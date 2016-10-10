@@ -1,0 +1,24 @@
+
+#email_notification{
+  width: 500px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 15px 0px;
+  font-family: sans-serif;
+}
+.blank{
+  background-color: white;
+}
+.red{
+  background-color: rgba(255, 0, 0, 0.63);
+  color: white;
+}
+.green{
+  background-color: #4CAF50;
+}
+form.delete {
+  display: inline-block;
+}
+li{
+  list-style: none;
+}
