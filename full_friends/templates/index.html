@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" >
+    <meta charset="utf-8">
+    <title>Full Friends</title>
+  </head>
+  <body>
+    <div id="myFriends">
+      <h1>List of My Friends</h1>
+      <table>
+        <tr>
+          <td> First name </td> <td> Last name </td> <td> Email </td> <td> Created At</td> <td>Updated At</td>
+        </tr>
+        {% for record in show_data %}
+          <tr>
+            <td>{{ record['first_name'] }} </td>
+            <td>{{ record['last_name'] }} </td>
+            <td>{{ record['email'] }}</td>
+            <td>{{ record['created_at'].strftime('%d/%m/%y %I:%M%p') }}</td>
+            <td>{{record['updated_at'].strftime('%d/%m/%y %I:%M%p')}}</td>
+            <td>
+              <a href="/friends/{{ record['id'] }}/edit"> Edit</a>
+            </td>
+            <td>
+                <form class="delete" action="/friends/{{ record['id'] }}/delete" method="post">
+                  <input type="submit" value="Delete Friend">
+                </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+    </div>
+    <div id="add_friend">
+      <h1>Add a Friend</h1>
+      <form action="/friends" method="post">
+        <label for="first_name">First Name :<input type="text" name="first_name" value=""> </label> <br>
+        <label for="last_name">Last Name :<input type="text" name="last_name" value=""> </label> <br>
+        <label for="email">Email:<input type="text" name="email" value=""></label> <br>
+        <input type="submit" value="Add Friend">
+      </form>
+    </div>
+
+
+  </body>
+</html>
