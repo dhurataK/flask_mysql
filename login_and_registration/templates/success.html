@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title>Login and Register</title>
+  </head>
+  <body>
+    <h1>Success Page!</h1>
+    <div id="success">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+            <p>
+              {{ msg }}
+            </p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </body>
+</html>

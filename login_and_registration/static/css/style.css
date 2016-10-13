@@ -1,0 +1,27 @@
+*{
+  font-family: sans-serif;
+}
+label, input{
+  display: block;
+  padding: 5px;
+}
+.box{
+  margin: 10px;
+  background-color: rgba(158, 158, 158, 0.74);
+  width: 450px;
+  padding: 10px;
+}
+#reg{
+  margin-left: 125px;
+  background-color: rgba(76, 175, 80, 0.82);
+}
+#log{
+  margin-left: 142px;
+  background-color: #009688
+}
+#errors{
+  color: red;
+}
+#success{
+  color: green;
+}

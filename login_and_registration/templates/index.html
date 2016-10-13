@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title>Login and Register</title>
+  </head>
+  <body>
+    <h1>Welcome to Login and Registration Assignment!</h1>
+    <div class="box">
+      <h1>Register for a new account:</h1>
+      <form class="" action="/create_user" method="post">
+        <label>First name: <input type="text" name="first_name"></label>
+        <label>Last name: <input type="text" name="last_name"></label>
+        <label>Email: <input type="text" name="email"></label>
+        <label>Password: <input type="password" name="password"></label>
+        <label>Retype password: <input type="password" name="c_password"></label>
+        <input type="submit" value="Register" id="reg">
+      </form>
+    </div>
+    <div class="box">
+      <h1>Login into your account:</h1>
+      <form action="/login" method="post">
+        <label>Email: <input type="text" name="email"></label>
+        <label>Password: <input type="password" name="password"></label>
+        <input type="submit" value="Login" id="log">
+      </form>
+    </div>
+    <div id="errors">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+            <p>
+              {{ msg }}
+            </p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </body>
+</html>
