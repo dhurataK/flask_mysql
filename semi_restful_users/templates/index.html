@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title>Semi-RESTful Routes</title>
+  </head>
+  <body>
+    <h1>Users</h1>
+    <table border=1>
+  		<thead>
+  			<tr>
+  				<th>Full Name</th>
+  				<th>Email</th>
+          <th>Created At</th>
+          <th>Actions</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			{% for user in users: %}
+  			<tr>
+  				<td><a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></td>
+  				<td>{{user.email}}</td>
+          <td>{{user.created_at}}</td>
+          <td><a href="/users/{{user.id}}">Show</a> <a href="/users/{{user.id}}/edit">Edit</a> <a href="/users/{{user.id}}/destroy">Delete</a></td>
+  			</tr>
+  			{% endfor %}
+  		</tbody>
+  	</table>
+    <a href="/users/new">Add a New User</a>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title>Semi-RESTful Routing</title>
+  </head>
+  <body>
+    <h1>User {{this_user.id}}</h1>
+    <p><strong>Full Name </strong>: {{this_user.first_name }} {{this_user.last_name}}</p>
+    <p><strong>Email: </strong> {{this_user.email}}</p>
+    <p><strong>Created at:</strong> {{this_user.created_at}}</p>
+    <h3><a href="/users/{{this_user.id}}/edit">Edit</a> | <a href="/users/{{this_user.id}}/destroy">Delete</a></h3>
+  </body>
+</html>

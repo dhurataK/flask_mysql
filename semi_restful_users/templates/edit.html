@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <title>Semi-RESTful Routing</title>
+  </head>
+  <body>
+    <h1>Edit User {{this_user.id}}</h1>
+    <form action="/users/{{this_user.id}}" method="post">
+      <label>First name: </label>
+      <input type="text" name="first_name" value="{{this_user.first_name}}">
+      <label>Last name: </label>
+      <input type="text" name="last_name" value="{{this_user.last_name}}">
+      <label>Email: </label>
+      <input type="text" name="email" value="{{this_user.email}}">
+      <input type="submit" value="Update">
+    </form>
+    <h3><a href="/users/{{this_user.id}}">Show</a> | <a href="/users">Go Back</a></h3>
+  </body>
+</html>
