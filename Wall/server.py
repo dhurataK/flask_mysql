@@ -115,7 +115,7 @@ def login():
 	    return redirect('/')
 
 def get_all_messages():
-    query = "SELECT users.id, users.first_name, users.last_name, messages.message, messages.id as message_id, messages.created_at FROM  users JOIN messages ON users.id = messages.user_id ORDER BY created_at DESC"
+    query = "SELECT users.id AS user_id, users.first_name, users.last_name, messages.message, messages.id as message_id, messages.created_at FROM  users JOIN messages ON users.id = messages.user_id ORDER BY created_at DESC"
     messages = mysql.query_db(query)
     return messages
 def get_all_comments():
@@ -135,7 +135,7 @@ def post_message():
     if len(message) < 1:
         redirect('/wall')
     else:
-        query = "INSERT INTO messages (user_id, message, created_at)VALUES (:user_id,:message, NOW());"
+        query = "INSERT INTO messages (user_id, message, created_at)VALUES (:user_id,:message, NOW())"
         data = {
             'user_id': session['user_id'],
             'message': message

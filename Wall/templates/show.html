@@ -22,6 +22,12 @@
             {{message.created_at.strftime('%B %d, %Y')}}</h3>
           </strong>
           <p>{{message.message}} </p>
+          {% if session['user_id'] == message['user_id'] %}
+          <form action="/delete-message" method="post">
+            <input type='hidden' name='message_id' value="{{ message['message_id']}}">
+            <input type="submit" value="Delete message">
+          </form>
+          {% endif%}
           <div class="comment_container">
             {% for comment in comments %}
               {% if comment['message_id'] == message['message_id']%}
