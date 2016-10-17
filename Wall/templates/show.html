@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title>CodingDojo Wall</title>
+  </head>
+  <body>
+    <head>
+      <h1 class="inline">CodindDojo Wall</h1> <h2 class="inline right">Welcome {{ session['user'].first_name }}</h2>
+      <a href="/logout">Log off</a>
+      <hr>
+      <form action="/messages" method="post" id = "post_message">
+        <h2>Post a message</h2>
+        <input type="text" name="message" value="" class="input_text">
+        <input type="submit" value="Post a message" class="submit-btn" id="blue-btn">
+      </form>
+      <div class="message_container">
+        {% for message in messages %}
+          <strong><h3>{{ message.first_name }}
+            {{  message.last_name }} {{ message['message_id']}}
+            {{message.created_at.strftime('%B %d, %Y')}}</h3>
+          </strong>
+          <p>{{message.message}} </p>
+          <div class="comment_container">
+            {% for comment in comments %}
+              {% if comment['message_id'] == message['message_id']%}
+                <h4>{{comment['first_name']}} {{ comment['last_name']}} - {{comment['created_at'].strftime('%B %d, %Y')}}</h4>
+                <p>{{ comment['comment']}} </p>
+                {% if session['user_id'] == comment['user_id'] %}
+                <form action="/delete-comment" method="post">
+                  <input type='hidden' name='comment_id' value="{{comment['comment_id']}}">
+                  <input type="submit" value="Delete Comment">
+                </form>
+                {% endif%}
+              {% endif %}
+            {% endfor %}
+
+              <form action="/comments" method="post">
+              <h4>Post a comment</h4>
+              <input type="text" name="comment" class="input_text">
+              <input type='hidden' name='message_id' value="{{message[ 'message_id']}}">
+              <input type="submit" value="Post a comment"  class="submit-btn" id="green-btn">
+            </form>
+          </div>
+
+        {% endfor %}
+      </div>
+    </head>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title>The Wall</title>
+  </head>
+  <body>
+    <h1>Welcome to CodingDojo WALL</h1>
+    <div id="{{session['errors']}}">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+            <p>
+              {{ msg }}
+            </p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+    <h3>Login: </h3>
+    <div class="box">
+      <form action="/login" method="post">
+        <label>Email: <input type="text" name="email"></label>
+        <label>Password: <input type="password" name="password"></label>
+        <input type="submit" value="Login" id="log">
+      </form>
+    </div>
+    <h2>Not part of our CodingDojo WALL?</h2>
+    <h3>Register NOW!</h3>
+    <div class="box">
+      <form class="" action="/create_user" method="post">
+        <label>First name: <input type="text" name="first_name"></label>
+        <label>Last name: <input type="text" name="last_name"></label>
+        <label>Email: <input type="text" name="email"></label>
+        <label>Password: <input type="password" name="password"></label>
+        <label>Retype password: <input type="password" name="c_password"></label>
+        <input type="submit" value="Register" id="reg">
+      </form>
+    </div>
+  </body>
+</html>
