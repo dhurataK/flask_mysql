@@ -7,7 +7,7 @@
   </head>
   <body>
     <head>
-      <h1 class="inline">CodindDojo Wall</h1> <h2 class="inline right">Welcome {{ session['user'].first_name }}</h2>
+      <h1 class="inline">CodindDojo Wall</h1> <h2 class="inline right">Welcome {{ session['user'] }}</h2>
       <a href="/logout">Log off</a>
       <hr>
       <form action="/messages" method="post" id = "post_message">
@@ -18,7 +18,7 @@
       <div class="message_container">
         {% for message in messages %}
           <strong><h3>{{ message.first_name }}
-            {{  message.last_name }} {{ message['message_id']}}
+            {{  message.last_name }} 
             {{message.created_at.strftime('%B %d, %Y')}}</h3>
           </strong>
           <p>{{message.message}} </p>

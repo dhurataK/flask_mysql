@@ -109,7 +109,7 @@ def login():
         if user[0]:
             if bcrypt.check_password_hash(user[0]['password'], request.form['password']):
                 session['user_id'] = user[0]['id']
-                session['user'] = user[0]
+                session['user'] = user[0]['first_name']
                 return redirect('/wall')
 	    flash('Email/Password combination not found!')
 	    return redirect('/')
@@ -135,7 +135,7 @@ def post_message():
     if len(message) < 1:
         redirect('/wall')
     else:
-        query = "INSERT INTO messages (user_id, message, created_at)VALUES (:user_id,:message, NOW())"
+        query = "INSERT INTO messages (user_id, message, created_at,updated_at)VALUES (:user_id,:message, NOW(),NOW())"
         data = {
             'user_id': session['user_id'],
             'message': message
@@ -151,7 +151,7 @@ def post_comment():
     if len(comment) < 1:
         redirect('/wall')
     else:
-        query = "INSERT INTO comments(message_id, user_id, comment, created_at) VALUES((SELECT id FROM messages WHERE id = :message_id),:user_id, :comment, NOW())"
+        query = "INSERT INTO comments(message_id, user_id, comment, created_at,updated_at) VALUES((SELECT id FROM messages WHERE id = :message_id),:user_id, :comment, NOW(),NOW())"
         data = {
             'user_id': session['user_id'],
             'message_id': message_id,
@@ -181,5 +181,6 @@ def delete():
 @app.route('/logout')
 def logout():
     session.pop('user_id')
+    session.pop('user')
     return redirect('/')
 app.run(debug=True)
